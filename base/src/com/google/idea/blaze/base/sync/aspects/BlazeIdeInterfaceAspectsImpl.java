@@ -478,7 +478,8 @@ public class BlazeIdeInterfaceAspectsImpl implements BlazeIdeInterface {
     if (languageSettings.isLanguageActive(kind.languageClass)) {
       return IdeInfoFromProtobuf.makeTargetIdeInfo(message);
     }
-    if (importRoots.importAsSource(IdeInfoFromProtobuf.getKey(message).label)) {
+    TargetKey key = IdeInfoFromProtobuf.getKey(message);
+    if (key != null && importRoots.importAsSource(key.label)) {
       ignoredLanguages.add(kind.languageClass);
     }
     return null;

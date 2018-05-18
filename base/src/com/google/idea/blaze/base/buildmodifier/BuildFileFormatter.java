@@ -137,13 +137,11 @@ public class BuildFileFormatter {
     Process process = new ProcessBuilder(buildifierBinary.getPath()).start();
     process.getOutputStream().write(inputText.getBytes(UTF_8));
     process.getOutputStream().close();
-    process.waitFor();
 
-    if (process.exitValue() != 0) {
-      return null;
-    }
     BufferedReader reader =
         new BufferedReader(new InputStreamReader(process.getInputStream(), UTF_8));
-    return CharStreams.toString(reader);
+    String formattedText = CharStreams.toString(reader);
+    process.waitFor();
+    return process.exitValue() != 0 ? null : formattedText;
   }
 }

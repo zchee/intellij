@@ -62,22 +62,13 @@ public class IdeInfoFromProtobuf {
       return null;
     }
     TargetKey key = getKey(message);
+    if (key == null) {
+      return null;
+    }
     ArtifactLocation buildFile = getBuildFile(message);
 
-    final Collection<Dependency> dependencies;
-    if (message.getDepsCount() > 0) {
-      dependencies =
-          message.getDepsList().stream().map(IdeInfoFromProtobuf::makeDependency).collect(toList());
-    } else {
-      dependencies =
-          Lists.newArrayListWithCapacity(
-              message.getDependenciesCount() + message.getRuntimeDepsCount());
-      dependencies.addAll(
-          makeDependencyListFromLabelList(
-              message.getDependenciesList(), DependencyType.COMPILE_TIME));
-      dependencies.addAll(
-          makeDependencyListFromLabelList(message.getRuntimeDepsList(), DependencyType.RUNTIME));
-    }
+    Collection<Dependency> dependencies =
+        message.getDepsList().stream().map(IdeInfoFromProtobuf::makeDependency).collect(toList());
 
     Collection<String> tags = ImmutableList.copyOf(message.getTagsList());
 
@@ -166,14 +157,6 @@ public class IdeInfoFromProtobuf {
         dartIdeInfo,
         testIdeInfo,
         javaToolchainIdeInfo);
-  }
-
-  private static Collection<Dependency> makeDependencyListFromLabelList(
-      List<String> dependencyList, Dependency.DependencyType dependencyType) {
-    return dependencyList
-        .stream()
-        .map(dep -> new Dependency(TargetKey.forPlainTarget(Label.create(dep)), dependencyType))
-        .collect(toList());
   }
 
   private static TargetKey makeTargetKey(IntellijIdeInfo.TargetKey key) {
@@ -453,9 +436,8 @@ public class IdeInfoFromProtobuf {
     return null;
   }
 
+  @Nullable
   static TargetKey getKey(IntellijIdeInfo.TargetIdeInfo message) {
-    return message.hasKey()
-        ? makeTargetKey(message.getKey())
-        : TargetKey.forPlainTarget(Label.create(message.getLabel()));
+    return message.hasKey() ? makeTargetKey(message.getKey()) : null;
   }
 }

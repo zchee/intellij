@@ -347,7 +347,7 @@
       <loadForDefaultProject/>
     </component>
     <component>
-      <implementation-class>com.google.idea.blaze.base.run.CorruptedRunConfigurationRemover</implementation-class>
+      <implementation-class>com.google.idea.blaze.base.run.DefaultRunConfigurationRemover</implementation-class>
     </component>
   </project-components>
 
