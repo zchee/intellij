@@ -32,6 +32,7 @@ merged_plugin_xml(
         "//dart:plugin_xml",
         "//python:plugin_xml",
     ] + select_for_plugin_api({
+        "clion-2018.2": ["src/META-INF/clwb_2018_2.xml"],
         "clion-2018.1": ["src/META-INF/clwb_2018_1.xml"],
         "clion-2017.3": ["src/META-INF/clwb_2017_3.xml"],
     }),

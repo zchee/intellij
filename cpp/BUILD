@@ -16,6 +16,7 @@ load("//intellij_platform_sdk:build_defs.bzl", "select_for_plugin_api")
 java_library(
     name = "cpp",
     srcs = glob(["src/**/*.java"]) + select_for_plugin_api({
+        "clion-2018.2": glob(["sdk_2018_2/src/**/*.java"]),
         "clion-2018.1": glob(["sdk_2018_1/src/**/*.java"]),
         "clion-2017.3": glob(["sdk_2017_3/src/**/*.java"]),
         "android-studio-3.0": glob(["sdk_2017_3/src/**/*.java"]),

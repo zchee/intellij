@@ -122,6 +122,13 @@ config_setting(
 )
 
 config_setting(
+    name = "clion-nightly",
+    values = {
+        "define": "ij_product=clion-nightly",
+    },
+)
+
+config_setting(
     name = "clion-2017.3",
     values = {
         "define": "ij_product=clion-2017.3",
@@ -132,6 +139,13 @@ config_setting(
     name = "clion-2018.1",
     values = {
         "define": "ij_product=clion-2018.1",
+    },
+)
+
+config_setting(
+    name = "clion-2018.2",
+    values = {
+        "define": "ij_product=clion-2018.2",
     },
 )
 

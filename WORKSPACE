@@ -61,6 +61,15 @@ new_http_archive(
     url = "https://download.jetbrains.com/cpp/CLion-2018.1.1.tar.gz",
 )
 
+# The plugin api for CLion 2018.2. This is required to build CLwB,
+# and run integration tests.
+new_http_archive(
+    name = "clion_2018_2",
+    build_file = "intellij_platform_sdk/BUILD.clion",
+    sha256 = "5e0d3957268fef24666a33115e684032c1264a8a7244c69ee77682fb9e2d2c0e",
+    url = "https://download.jetbrains.com/cpp/CLion-182.2371.31.tar.gz",
+)
+
 # The plugin api for Android Studio 3.0. This is required to build ASwB,
 # and run integration tests.
 new_http_archive(
