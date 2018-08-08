@@ -29,6 +29,7 @@ java_library(
         "intellij-2018.2": ["//sdkcompat/v182"],
         "intellij-ue-2018.2": ["//sdkcompat/v182"],
         "clion-2018.1": ["//sdkcompat/v181"],
+        "clion-2018.2-RC": ["//sdkcompat/v182"],
         "clion-2018.2": ["//sdkcompat/v182"],
     }),
 )

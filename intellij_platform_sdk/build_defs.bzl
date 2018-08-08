@@ -11,6 +11,7 @@ INDIRECT_IJ_PRODUCTS = {
     "android-studio-canary": "android-studio-3.3",
     "clion-latest": "clion-2018.1",
     "clion-beta": "clion-2018.1",
+    "clion-eap": "clion-2018.2",
 }
 
 DIRECT_IJ_PRODUCTS = {
@@ -45,6 +46,10 @@ DIRECT_IJ_PRODUCTS = {
     "clion-2018.1": struct(
         ide = "clion",
         directory = "clion_2018_1",
+    ),
+    "clion-2018.2-RC": struct(
+        ide = "clion",
+        directory = "clion_2018_2",
     ),
     "clion-2018.2": struct(
         ide = "clion",

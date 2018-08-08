@@ -129,6 +129,13 @@ config_setting(
 )
 
 config_setting(
+    name = "clion-2018.2-RC",
+    values = {
+        "define": "ij_product=clion-2018.2-RC",
+    },
+)
+
+config_setting(
     name = "clion-2018.2",
     values = {
         "define": "ij_product=clion-2018.2",
