@@ -376,7 +376,8 @@ public final class BlazeCWorkspace implements ProjectComponent {
               new OCWorkspaceEventImpl(
                   /* resolveConfigurationsChanged= */ true,
                   /* sourceFilesChanged= */ true,
-                  /* compilerSettingsChanged= */ true);
+                  /* compilerSettingsChanged= */ true,
+                  /* ?= */ true);
           ((OCWorkspaceModificationTrackersImpl)
                   OCWorkspace.getInstance(project).getModificationTrackers())
               .fireWorkspaceChanged(event);
@@ -432,7 +433,7 @@ public final class BlazeCWorkspace implements ProjectComponent {
     TransactionGuard.getInstance()
         .submitTransactionAndWait(
             () -> {
-              ApplicationManager.getApplication().runWriteAction(model::commit);
+              ApplicationManager.getApplication().invokeAndWait(model::commit);
             });
     return issues;
   }

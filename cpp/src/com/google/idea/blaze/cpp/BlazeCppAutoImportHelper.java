@@ -85,14 +85,14 @@ public class BlazeCppAutoImportHelper extends OCDefaultAutoImportHelper {
         continue;
       }
       IncludedHeadersRoot includedHeadersRoot = (IncludedHeadersRoot) root;
-      if (asUserHeader != includedHeadersRoot.isUserHeaders()) {
+      if (asUserHeader != includedHeadersRoot.getKind().isUser()) {
         continue;
       }
       VirtualFile rootBase = root.getVirtualFile();
       if (rootBase == null) {
         continue;
       }
-      String relativePath = VfsUtilCore.getRelativePath(fileToImport, rootBase);
+      String relativePath = VfsUtilCore.getRelativePath(fileToImport, rootBase, '/');
       if (relativePath == null) {
         continue;
       }

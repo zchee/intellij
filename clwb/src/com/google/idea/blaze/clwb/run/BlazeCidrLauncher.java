@@ -66,10 +66,10 @@ import com.jetbrains.cidr.execution.CidrConsoleBuilder;
 import com.jetbrains.cidr.execution.TrivialInstaller;
 import com.jetbrains.cidr.execution.debugger.CidrDebugProcess;
 import com.jetbrains.cidr.execution.debugger.CidrLocalDebugProcess;
-import com.jetbrains.cidr.execution.debugger.backend.LLDBDriverConfiguration;
+import com.jetbrains.cidr.execution.debugger.backend.lldb.LLDBDriverConfiguration;
 import com.jetbrains.cidr.execution.debugger.remote.CidrRemoteDebugParameters;
 import com.jetbrains.cidr.execution.debugger.remote.CidrRemotePathMapping;
-import com.jetbrains.cidr.execution.testing.CidrLauncher;
+import com.jetbrains.cidr.execution.CidrLauncher;
 import com.jetbrains.cidr.execution.testing.google.CidrGoogleTestConsoleProperties;
 import java.io.File;
 import java.util.List;
@@ -322,7 +322,7 @@ public final class BlazeCidrLauncher extends CidrLauncher {
       return new GoogleTestConsoleBuilder(configuration.getProject(), testUiSession);
     }
     return new CidrConsoleBuilder(
-        configuration.getProject(), /* CidrToolEnvironment */ null, /* baseDir */ (File) null);
+        configuration.getProject(), /* CidrToolEnvironment */ null, /* baseDir */ null);
   }
 
   private ImmutableList<String> getGdbStartupCommands(File workspaceRootDirectory) {
@@ -344,7 +344,7 @@ public final class BlazeCidrLauncher extends CidrLauncher {
     @Nullable private final BlazeTestUiSession testUiSession;
 
     private GoogleTestConsoleBuilder(Project project, @Nullable BlazeTestUiSession testUiSession) {
-      super(project, /* CidrToolEnvironment */ null, /* baseDir */ (File) null);
+      super(project, /* CidrToolEnvironment */ null, /* baseDir */ null);
       this.testUiSession = testUiSession;
       addFilter(new BlazeCidrTestOutputFilter(project));
     }
